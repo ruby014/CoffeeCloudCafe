@@ -1,4 +1,4 @@
-import { Box, Button, Container, Heading, Input, useToastStyles, VStack } from "@chakra-ui/react";
+import { Box, Button, Container, Heading, Input, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import { useColorModeValue } from "../components/ui/color-mode";
 import { useProductStore } from "../store/product";
@@ -10,18 +10,21 @@ const CreatePage = () => {
     image:"",
   });
 
-  const toast = useToas
-
-  const { createProduct } = useProductStore()
+  const { createProduct } = useProductStore();
 
   const handleAddProduct = async() => {
-    const {success, message} = await createProduct(newProduct);
-    console.log("Success: ", success); 
-    console.log("Message: ", message); 
-
+      try {
+        const { success, message } = await createProduct(newProduct);
+        console.log("Success: ", success); 
+        console.log("Message: ", message); 
+      } catch (error) {
+        console.log('Error in function handleAddProduct'); 
+        return { success: false, message: error.message};
+      }
   };
 
   return ( 
+    // <form>
   <Container maxW="lg">
     <VStack
       spacing={8}
@@ -29,12 +32,14 @@ const CreatePage = () => {
       <Heading as="h1" size="4xl" textAlign={"center"} mb={8}>
         Create A New Cake
       </Heading>
-
+      
       <Box
         w={"full"} bg={useColorModeValue("white", "gray.800")}
         p={8} rounded={"lg"} shadow={"md"}
       >
+
         <VStack spacing={4}>
+        
           <Input
             placeholder="Cake Name"
             name="name"
@@ -64,9 +69,12 @@ const CreatePage = () => {
               Add Cake
           </Button>
         </VStack>
+
       </Box>
+
     </VStack>
   </Container>
+  /* </form> */
   );
 };
 

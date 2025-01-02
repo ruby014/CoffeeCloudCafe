@@ -14,9 +14,11 @@ const productSchema = new mongoose.Schema({
         type: String, 
         required: true
     },
-}, {
-    timestamps: true // whenever a product is created, timestamp ensure product has createdAt and updatedAt fields
-}); 
+}, 
+{
+    timestamps: true, // whenever a product is created, timestamp ensure product has createdAt and updatedAt fields
+}
+); 
 
 // create product model, note depending on schema
 const Product = mongoose.model('Product', productSchema); 

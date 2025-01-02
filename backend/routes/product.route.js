@@ -4,11 +4,10 @@ import { getProduct, updateProduct, createProduct, deleteProduct } from '../cont
 
 const router = express.Router(); 
 
-router.post('/', createProduct); 
+router.post('/', createProduct); // previously just '/'
 router.get('/', getProduct); 
 /* UPDATE put- if updating all fields vs patch- updating some fields*/
 router.put('/:id', updateProduct); 
 router.delete('/:id', deleteProduct); 
-
 
 export default router; 

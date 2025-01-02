@@ -24,7 +24,7 @@ export const createProduct = async (req, res) => {
     if(!product.name
         || !product.price
         || !product.image) {
-            return res.status(400).json({ sucess:false, message: 'Please provide all fields.'}); 
+            return res.status(400).json({ sucess: false, message: 'Please provide all fields.'}); 
     }
 
     const newProduct = new Product(product);

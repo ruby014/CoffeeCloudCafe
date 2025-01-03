@@ -6,9 +6,11 @@ import ProductCard from "../components/ui/ProductCard";
 
 const HomePage = () => {
   const { fetchProducts, products} = useProductStore();
+
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
+
   console.log("products", products); 
   
   return (
@@ -26,13 +28,14 @@ const HomePage = () => {
         </Text>
 
         <SimpleGrid
-        columns={{
-          base: 1, 
-          md: 2, 
-          lg: 3
-        }}
-        spacing={10}
-        w={"full"}
+          columns={{
+            base: 1, 
+            md: 2, 
+            lg: 3
+          }}
+          gap='20px'//spacing={10}
+          w={"full"}
+          maxW={'1140px'}
         >
             {products.map((product) => (
               <ProductCard
@@ -41,20 +44,23 @@ const HomePage = () => {
               />
             ))}
         </SimpleGrid>
-        <Text 
-          fontSize={"xl"}
-          textAlign={"center"}
-          fontWeight={"bold"}
-          color={"gray.500"}
-        > No cakes found 😔{" "}
-          <Link to={"/create"}>
-            <Text
-              as="span"
-              color="blue.500"
-            > Create a Cake
-            </Text>
-          </Link>
-        </Text>
+
+        {products.length === 0 && (
+                  <Text 
+                  fontSize={"xl"}
+                  textAlign={"center"}
+                  fontWeight={"bold"}
+                  color={"gray.500"}
+                > No cakes found 😔{" "}
+                  <Link to={"/create"}>
+                    <Text
+                      as="span"
+                      color="blue.500"
+                    > Create a Cake
+                    </Text>
+                  </Link>
+                </Text>
+        )}; 
       </VStack>
     </Container>
   )

@@ -1,5 +1,5 @@
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import { Box, Heading, HStack, IconButton, Image, Text } from "@chakra-ui/react";
+import { Box, Button, DialogActionTrigger, DialogBackdrop, DialogBody, DialogCloseTrigger, DialogContent, DialogFooter, DialogHeader, DialogRoot, DialogTitle, DialogTrigger, Heading, HStack, IconButton, Image, Input, Portal, Text, VStack } from "@chakra-ui/react";
 import { useColorModeValue } from "./color-mode";
 import { useProductStore } from "../../store/product";
 import { toaster } from './toaster'
@@ -11,20 +11,20 @@ const ProductCard = ({ product }) => {
     const { deleteProduct } = useProductStore(); 
 
     const handleDeleteProduct = async (pid) => {
-        const {success, message} = await deleteProduct(pid)
+        const { success, message } = await deleteProduct(pid); 
         if(!success) {
             toaster.create({
                 title: 'Error',
                 description: message, 
-                status: 'error', 
                 duration: 3000, 
+                type: "error", 
                 isClosable: 'true', 
             });
         } else {
-            toaster.success({
+            toaster.create({
                 title: 'Success', 
                 description: message, 
-                status: 'success', 
+                type: "success", 
                 duration: 3000, 
                 isClosable: 'true'
             });
@@ -65,25 +65,41 @@ const ProductCard = ({ product }) => {
                 </Text>
 
                 <HStack spacing={2}>
-                    {/* <IconButton icon={<EditIcon/>} colorScheme='blue'/>
-                    <IconButton icon={<DeleteIcon/>} colorScheme='red'/> */}
+                <DialogRoot>
+                <DialogTrigger>
                     <IconButton bgColor={'blue.200'}>
-                        <EditIcon color={'black'}></EditIcon>
-                    </IconButton>
+                        <EditIcon color={'black'}/>
+                    </IconButton> 
+                </DialogTrigger>
+                <Portal>
+                    <DialogBackdrop>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Hello there</DialogTitle>
+                            </DialogHeader>
+                            <DialogBody>
+                                <p>Hello to the world.</p>
+                            </DialogBody>
+                            <DialogFooter>
+                                <DialogActionTrigger asChild>
+                                    <Button>Cancel</Button>
+                                </DialogActionTrigger>
+                                <Button>Update</Button>
+                            </DialogFooter>
+                            <DialogCloseTrigger/>
+                        </DialogContent>
+                    </DialogBackdrop>
+                </Portal>
+            </DialogRoot>
+
                     <IconButton bgColor={'red.200'}>
                         <DeleteIcon color={'black'}
-                        onClick={() => 
-                            toaster.create({
-                                title: "Success", 
-                                description: "Delete button clicked", 
-                                duration: 3000,
-                            })
-                            }
-                        ></DeleteIcon>
+                        onClick={() => handleDeleteProduct(product._id)}/>
                     </IconButton>
                 </HStack>
             </Box>
         </Box>
+        
     )
 }; 
 export default ProductCard; 

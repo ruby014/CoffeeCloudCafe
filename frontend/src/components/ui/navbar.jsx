@@ -34,18 +34,19 @@ const Navbar = () => {
      Coffee Cloud Cafe☁️
   </Text>
 
-  <HStack spacing={2} alignItems={"center"}>
-    <Link to={"/create"}>
-      <Button>
-        <PlusSquareIcon fontSize={20}/>
-      </Button>
-    </Link>
-    <Button onClick={toggleColorMode}>
-      {colorMode === "light" ? <IoMoon /> : 
-      <LuSun size="20px" />}
-    </Button>
-  </HStack>
-  </Flex>
+      <HStack spacing={2} alignItems={"center"}>
+        <Link href="/create">
+          <Button>
+            <PlusSquareIcon fontSize={20}/>
+          </Button>
+        </Link>
+        
+        <Button onClick={toggleColorMode}>
+          {colorMode === "light" ? <IoMoon /> : 
+          <LuSun size="20px" />}
+        </Button>
+      </HStack>
+    </Flex>
   </Container>
 };
 

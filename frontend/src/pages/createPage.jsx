@@ -19,14 +19,14 @@ const CreatePage = () => {
           toaster.create({
             title:"Error",
             description: message, 
-            status: "error",
+            type: "error",
             isClosable: true
           });
         } else {
           toaster.create({
             title:"Success",
-            description: message, 
-            status: "success",
+            description: "Product added successfully", 
+            type: "success", 
             isClosable: true
           });
         }
@@ -40,12 +40,11 @@ const CreatePage = () => {
   };
 
   return ( 
-    // <form>
   <Container maxW="lg">
     <VStack
       spacing={8}
     >
-      <Heading as="h1" size="4xl" textAlign={"center"} mb={8}>
+      <Heading as="h1" size="4xl" textAlign={"center"} mb={8} fontWeight={"bold"}>
         Create A New Product
       </Heading>
       
@@ -57,7 +56,7 @@ const CreatePage = () => {
         <VStack spacing={4}>
         
           <Input
-            placeholder="Item Name"
+            placeholder="Product Name"
             name="name"
             value={newProduct.name}
             onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value})}
@@ -90,7 +89,6 @@ const CreatePage = () => {
 
     </VStack>
   </Container>
-  /* </form> */
   );
 };
 

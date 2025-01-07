@@ -56,7 +56,7 @@ const HomePage = () => {
                     <Text
                       as="span"
                       color="blue.500"
-                    > Create a Cake
+                    > Create a Product
                     </Text>
                   </Link>
                 </Text>

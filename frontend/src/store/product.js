@@ -36,6 +36,22 @@ export const useProductStore = create((set) => ({
         // allows updating of ui to reflect changes made to backend w/o refresh
         set(state => ({ products: state.products.filter(product => product._id !== pid )}));
         return { success: true, message: data.message }; 
+    },
+    updateProduct: async (pid, updatedProduct) => {
+        const res = await fetch(`/api/products/${pid}`, {
+            method: "PUT", 
+            headers: {
+                "Content-Type":"application/json", 
+            }, 
+            body: JSON.stringify(updatedProduct), 
+        });
+        const data = await res.json(); 
+        if (!data.success) return { success: false, message: data.message}; 
+        
+        // this updates the state in the ui immediately so we can see the latest value
+        set(state => ({
+            products: state.products.map(product => product._id === pid ? data.data : product)
+        })); 
     }
 }));
 

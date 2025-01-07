@@ -24,7 +24,7 @@ const HomePage = () => {
           gradientTo={"blue.500"}
           bgClip={"text"}
           textAlign={"center"}
-        > Current Flavours
+        > Current Products
         </Text>
 
         <SimpleGrid
@@ -51,7 +51,7 @@ const HomePage = () => {
                   textAlign={"center"}
                   fontWeight={"bold"}
                   color={"gray.500"}
-                > No cakes found 😔{" "}
+                > No products found 😔{" "}
                   <Link to={"/create"}>
                     <Text
                       as="span"

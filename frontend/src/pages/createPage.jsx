@@ -46,7 +46,7 @@ const CreatePage = () => {
       spacing={8}
     >
       <Heading as="h1" size="4xl" textAlign={"center"} mb={8}>
-        Create A New Cake
+        Create A New Product
       </Heading>
       
       <Box
@@ -57,7 +57,7 @@ const CreatePage = () => {
         <VStack spacing={4}>
         
           <Input
-            placeholder="Cake Name"
+            placeholder="Item Name"
             name="name"
             value={newProduct.name}
             onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value})}
@@ -82,7 +82,7 @@ const CreatePage = () => {
             colorScheme="blue"
             onClick={handleAddProduct}
             w="full">
-              Add Cake
+              Add Product
           </Button>
         </VStack>
 

@@ -3,12 +3,16 @@ import { Box, Button, DialogActionTrigger, DialogBackdrop, DialogBody, DialogClo
 import { useColorModeValue } from "./color-mode";
 import { useProductStore } from "../../store/product";
 import { toaster } from './toaster'
+import { useState } from "react";
 
 const ProductCard = ({ product }) => {
+    const [ updatedProduct, setUpdatedProduct ] = useState(product); 
+
+
     const textColor = useColorModeValue("gray.600", "gray.200"); 
     const bg = useColorModeValue("white", "gray.800"); 
 
-    const { deleteProduct } = useProductStore(); 
+    const { deleteProduct, updateProduct } = useProductStore(); 
 
     const handleDeleteProduct = async (pid) => {
         const { success, message } = await deleteProduct(pid); 
@@ -29,6 +33,10 @@ const ProductCard = ({ product }) => {
                 isClosable: 'true'
             });
         }
+    };
+
+    const handleUpdateProduct = async (pid, updatedProduct) => {
+        await updateProduct(pid, updatedProduct);
     }
 
     return (
@@ -65,28 +73,63 @@ const ProductCard = ({ product }) => {
                 </Text>
 
                 <HStack spacing={2}>
-                <DialogRoot>
+
+            <DialogRoot>
                 <DialogTrigger>
                     <IconButton bgColor={'blue.200'}>
-                        <EditIcon color={'black'}/>
+                        <EditIcon color={'black'} />
                     </IconButton> 
                 </DialogTrigger>
                 <Portal>
                     <DialogBackdrop>
                         <DialogContent>
                             <DialogHeader>
-                                <DialogTitle>Hello there</DialogTitle>
+                                <DialogTitle>Update a Product</DialogTitle>
                             </DialogHeader>
+
                             <DialogBody>
-                                <p>Hello to the world.</p>
+                                <VStack spacing={4}>
+                                    <Input 
+                                        placeholder="Cake Name"
+                                        name="name"
+                                        value={updatedProduct.name}
+                                        onChange={(e) => setUpdatedProduct({
+                                            ...updatedProduct, name: e.target.value
+                                        })}
+                                    />
+                                    <Input 
+                                        placeholder="Price"
+                                        name="price"
+                                        type="number"
+                                        min={0.1}
+                                        value={updatedProduct.price}
+                                        onChange={(e) => setUpdatedProduct({
+                                            ...updatedProduct, price: e.target.value
+                                        })}
+                                    />
+                                    <Input 
+                                        placeholder="Image URL"
+                                        name="image"
+                                        value={updatedProduct.image}
+                                        onChange={(e) => setUpdatedProduct({
+                                            ...updatedProduct, image: e.target.value
+                                        })}
+                                    />
+                                </VStack>
                             </DialogBody>
+
                             <DialogFooter>
-                                <DialogActionTrigger asChild>
-                                    <Button>Cancel</Button>
+                                <DialogActionTrigger>
+                                    <Button
+                                    onClick={() => handleUpdateProduct(product._id, updatedProduct)}
+                                    >Update</Button>
                                 </DialogActionTrigger>
-                                <Button>Update</Button>
+                                <DialogCloseTrigger />
+                                <DialogActionTrigger asChild>
+                                    <Button variant="outline">Cancel</Button>
+                                </DialogActionTrigger>
                             </DialogFooter>
-                            <DialogCloseTrigger/>
+                            <DialogCloseTrigger />
                         </DialogContent>
                     </DialogBackdrop>
                 </Portal>

@@ -31,7 +31,7 @@ const Navbar = () => {
       as={RouterLink}
       to="/"
     >
-    Cake Shop 🛒
+     Coffee Cloud Cafe☁️
   </Text>
 
   <HStack spacing={2} alignItems={"center"}>

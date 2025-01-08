@@ -19,7 +19,7 @@ export const useProductStore = create((set) => ({
         const data = await res.json()
 
         set((state) => ({products: [...state.products, data.data] }));
-        return {success: true, message: "Cake created successfully" };
+        return {success: true, message: data.message };
     },
     fetchProducts: async () => {
         const res = await fetch("/api/products"); 

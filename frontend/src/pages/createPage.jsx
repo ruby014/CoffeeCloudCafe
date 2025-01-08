@@ -31,12 +31,6 @@ const CreatePage = () => {
           });
         }
         setNewProduct({name: "", price: "", image: ""});
-      //   console.log("Success: ", success); 
-      //   console.log("Message: ", message); 
-      // } catch (error) {
-      //   console.log('Error in function handleAddProduct'); 
-      //   return { success: false, message: error.message};
-      // }
   };
 
   return ( 

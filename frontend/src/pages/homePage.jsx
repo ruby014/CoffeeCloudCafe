@@ -5,7 +5,7 @@ import { useProductStore } from "../store/product";
 import ProductCard from "../components/ui/ProductCard";
 
 const HomePage = () => {
-  const { fetchProducts, products} = useProductStore();
+  const { fetchProducts, products } = useProductStore();
 
   useEffect(() => {
     fetchProducts();
@@ -60,7 +60,7 @@ const HomePage = () => {
                     </Text>
                   </Link>
                 </Text>
-        )}; 
+        )}
       </VStack>
     </Container>
   )

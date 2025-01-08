@@ -7,7 +7,7 @@ import { connectDB } from './config/db.js';
 
 import productRoutes from './routes/product.route.js'; 
 
-dotenv.config({path: '../.env'}); // not based off tutorial
+dotenv.config();
 
 const app = express(); 
 const PORT = process.env.PORT || 5000; 

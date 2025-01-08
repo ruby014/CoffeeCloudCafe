@@ -1,18 +1,21 @@
 {
-  "name": "sweetstack",
+  "name": "coffeecloudcafe",
   "version": "1.0.0",
-  "description": "MERN app to simulate a cake store with CRUD actions!",
+  "description": "MERN app to simulate a trendy online coffee store where you perform CRUD actions",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon backend/server.js"
+    "dev": "NODE_ENV=development nodemon backend/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "NODE_ENV=production node backend/server.js"
   },
   "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@chakra-ui/react": "^3.2.3",
+    "@chakra-ui/icons": "^2.2.4",
+    "@chakra-ui/react": "^3.2.5",
     "@emotion/react": "^11.14.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
@@ -20,6 +23,8 @@
     "mongoose": "^8.9.1"
   },
   "devDependencies": {
+    "@chakra-ui/cli": "^3.2.5",
+    "cross-env": "^7.0.3",
     "nodemon": "^3.1.9"
   }
 }

@@ -4,7 +4,7 @@ import { getProduct, updateProduct, createProduct, deleteProduct } from '../cont
 
 const router = express.Router(); 
 
-router.post('/', createProduct); // previously just '/'
+router.post('/', createProduct);
 router.get('/', getProduct); 
 /* UPDATE put- if updating all fields vs patch- updating some fields*/
 router.put('/:id', updateProduct); 
